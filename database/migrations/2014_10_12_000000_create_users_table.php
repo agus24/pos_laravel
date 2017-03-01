@@ -21,10 +21,11 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('alamat');
             $table->string('phone');
-            $table->integer('ware_id');
+            $table->integer('ware_id')->index();
             $table->integer('level_user');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

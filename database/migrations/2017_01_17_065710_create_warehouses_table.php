@@ -18,6 +18,7 @@ class CreateWarehousesTable extends Migration
             $table->string('name');
             $table->string('alamat');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

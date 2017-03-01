@@ -40,7 +40,9 @@
                         <td>{{ $value->alamat }}</td>
                         <td>{{ $value->email }}</td>
                 		<td>{{ $value->phone }}</td>
-                		<td><a href="{{ url('user/').'/'.$value->id."/edit" }}" class="btn btn-primary btn-sm"><i class="icon-pencil"></i>
+                		<td>
+                        <a href="{{ url('user/'.$value->id.'/change') }}" class="btn btn-default btn-sm">Change Permission</a>
+                        <a href="{{ url('user/').'/'.$value->id."/edit" }}" class="btn btn-primary btn-sm"><i class="icon-pencil"></i>
                 		</a>
                         {!! Form::open([
                                     'method'=>'DELETE',

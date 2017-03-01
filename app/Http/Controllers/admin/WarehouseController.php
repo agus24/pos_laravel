@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\model\warehouse;
+use Session;
 
 class WarehouseController extends Controller
 {

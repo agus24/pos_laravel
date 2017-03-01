@@ -38,6 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{ asset('assets/global/plugins/morris/morris.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/jqvmap/jqvmap/jqvmap.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/select2/css/select2.css') }}">
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="{{ asset('assets/global/css/components.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
@@ -47,6 +48,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{ asset('assets/layouts/layout/css/layout.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/layouts/layout/css/themes/darkblue.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
         <link href="{{ asset('assets/layouts/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/bower_components/Autocomplete/dist/autocomplete.css') }}">
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
@@ -88,7 +91,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="{{ url('/logout') }}"
+                                        <a href="#"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             Logout
@@ -176,6 +179,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="{{ asset('assets/global/plugins/select2/js/select2.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/global/plugins/moment.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/global/plugins/morris/morris.min.js') }}" type="text/javascript"></script>
@@ -211,7 +215,6 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('assets/global/scripts/app.min.js') }}" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="{{ asset('assets/pages/scripts/dashboard.min.js') }}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ asset('assets/layouts/layout/scripts/layout.min.js') }}" type="text/javascript"></script>
@@ -219,6 +222,13 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <script>
+            $('.select2').each(function() {
+                $(this).select2();
+                console.log('select2 generated')
+            });
+        </script>
+        @yield('script')
+        @include('layout.jsVariable')
     </body>
-
 </html>

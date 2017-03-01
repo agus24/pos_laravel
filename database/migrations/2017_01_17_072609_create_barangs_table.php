@@ -16,11 +16,13 @@ class CreateBarangsTable extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kode');
-            $table->string('id_harga');
+            $table->string('id_harga')->index();
             $table->string('nama');
-            $table->integer('id_category');
-            $table->integer('id_subcategory');
+            $table->integer('id_category')->index();
+            $table->integer('id_subcategory')->index();
+            $table->integer('harga')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

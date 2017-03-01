@@ -10,4 +10,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function generateCombo($array)
+    {
+
+    	$hasil[''] = 'Select';
+    	foreach($array as $key => $value){
+    		$hasil[$value['kiri']] = $value['kanan'];
+    	}
+    	return $hasil;
+
+    }
 }

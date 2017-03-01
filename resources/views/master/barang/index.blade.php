@@ -36,7 +36,14 @@
                         <td>{{$key+1}}.</td>
                         @endif
                         <td>{{ $value->kode }}</td>
+                        <td>{{ $value->nama }}</td>
+                        @if(Auth::user()->level_user == 1)
                         <td>{{ $value->harga }}</td>
+                        @else
+                        <td><i>Secret</i></td>
+                        @endif
+                        <td>{{ $value->category_name }}</td>
+                        <td>{{ $value->sub_category_name }}</td>
                 		<td><a href="{{ url('barang/').'/'.$value->id."/edit" }}" class="btn btn-primary btn-sm"><i class="icon-pencil"></i>
                 		</a>
                         {!! Form::open([

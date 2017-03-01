@@ -18,6 +18,7 @@ class CreateHargasTable extends Migration
             $table->string('kode');
             $table->integer('harga');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

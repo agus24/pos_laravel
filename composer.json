@@ -10,7 +10,8 @@
         "appzcoder/crud-generator" : "*",
         "laravelcollective/html": "^5.2",
         "maatwebsite/excel": "~2.1.0",
-        "barryvdh/laravel-dompdf" : "*"
+        "barryvdh/laravel-dompdf" : "*",
+        "laracasts/utilities": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\UserAccess;
 use Session;
 use Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -136,6 +138,44 @@ class UserController extends Controller
 
         Session::flash('flash_message', 'deleted!');
 
+        return redirect('user');
+    }
+
+    public function changePermission($id)
+    {
+        $user = User::findOrFail($id);
+        // $userAccess = new UserAccess;
+        // $userAccess = $userAccess->getMenuUser($user->id);
+        $userAccess = 
+        \DB::table('menu_lists')
+            ->leftjoin('user_accesses',function($q) use ($id){
+                $q->on('menu_lists.id','=','user_accesses.menu_id')
+                    ->on('user_accesses.user_id','=',"$id");
+            })
+            ->select('menu_lists.id','menu_lists.name','menu_lists.parent',\DB::raw('ifnull(user_accesses.menu_id,0) as menu_id'))
+            ->get();
+
+        // dd(['userAccess'=>$userAccess],["user"=>$user]);
+        return view('master.user.permission',['userAccess' => $userAccess, "user"=>$user]);
+    }
+
+    public function updatePermission(Request $request,$id)
+    {
+        $this->validate($request,[
+            "menu_id" => "array"
+        ]);
+
+        \DB::table('user_accesses')->where('user_id','=',$id)->delete();
+        $data_ins = array();
+        $menu_id = $request->input('menu_id');
+        for($i = 0 ; $i < count($menu_id) ; $i++){
+            $data_ins[] = array(
+                                "menu_id" => $menu_id[$i],
+                                "user_id" => $id,
+                                "permission" => 1
+                                );
+        }
+        \DB::table('user_accesses')->insert($data_ins);
         return redirect('user');
     }
 }
