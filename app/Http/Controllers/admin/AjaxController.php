@@ -102,12 +102,17 @@ class AjaxController extends Controller
         if(!$request->ajax()){
             abort('405');
         }
+
         $category = new Category;
         return $category->get();
     }
 
     private function allBarang($request)
     {
+        if(!$request->ajax()){
+            abort('405');
+        }
+
         $barang = new Barang;
         $hasil = $barang
                         ->leftjoin('hargas','hargas.id','=','barangs.id_harga')
@@ -118,6 +123,10 @@ class AjaxController extends Controller
 
     private function allPaymentType($request)
     {
+        if(!$request->ajax()){
+            abort('405');
+        }
+
         $kartu = new Kartu;
         return $kartu->get();
     }

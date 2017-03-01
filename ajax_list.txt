@@ -1,0 +1,49 @@
+product : 
+		cek stok : 
+			link = /ajax/adjustBarang
+			param = {
+				_token = "{{ csrf_token() }}",
+				id_barang = id_barang
+			}
+			response = {
+						"id":2,
+						"kode":"RJI0103001",
+						"id_harga":"18",
+						"nama":"Boneka Hello Kitty Kotakkotak",
+						"id_category":1,
+						"id_subcategory":3,
+						"harga":155000,
+						"created_at":"0000-00-00 00:00:00",
+						"updated_at":"0000-00-00 00:00:00",
+						"deleted_at":null,
+						"jumlah_keluar":"2",
+						"jumlah_masuk":"0",
+						"stok":"-2",
+						"ware_id":null
+					}
+
+		cek smua item :
+			link = "/ajax/allBarang"
+			param = {
+				_token = "{{ csrf_token() }}",
+			}
+
+category :
+		$.ajax({
+			async	: false,
+			type 	: "POST",
+			data 	: {
+				_token:"RIKse8AsuhfXIkmz32YJT03ajfskeo60msgrtRlY"
+			},
+			url 	: "/ajax/category",
+			success : function(result) {
+				console.log(result)
+			}
+		})
+
+payment : 
+		ambil smua payment :
+			link = "/ajax/allPaymentType"
+			param = {
+				_token = "{{ csrf_token() }}",
+			}
