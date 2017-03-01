@@ -4,7 +4,10 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\model\Barang;
+use App\model\Category;
+use App\model\Kartu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AjaxController extends Controller
@@ -22,6 +25,15 @@ class AjaxController extends Controller
     			break;
             case 'adjustBarang' :
                 return response()->json($this->adjustBarang($request));
+                break;
+            case 'category' : 
+                return response()->json($this->category($request));
+                break;
+            case 'allBarang' :
+                return response()->json($this->allBarang($request));
+                break;
+            case 'allPaymentType' :
+                return response()->json($this->allPaymentType($request));
                 break;
     	}
     }
@@ -65,9 +77,48 @@ class AjaxController extends Controller
         
         $id_barang = $request->input('id_barang');
 
-        $stok = DB::table('v_stok')->where('id',$id_barang)->get();
+        // $stok = DB::table('v_stok')->where('id',$id_barang)->get();
+
+        $stok = DB::table('barangs')
+                    ->leftjoin('v_itemOut', function($join) {
+                        $join->on('barangs.id','v_itemOut.barang_id');
+                        $join->on('v_itemOut.ware_id',DB::raw(Auth::user()->ware_id));
+                    })
+                    ->leftjoin('v_itemIn', function($join) {
+                        $join->on('barangs.id','v_itemIn.barang_id');
+                        $join->on('v_itemIn.ware_id',DB::raw(Auth::user()->ware_id));
+                    })
+                    ->select("barangs.*",DB::raw("ifnull(v_itemOut.total,0) as jumlah_keluar"),DB::raw("ifnull(v_itemIn.total,0) as jumlah_masuk"), DB::raw("ifnull(v_itemIn.total,0) - ifnull(v_itemOut.total,0) as stok"),"v_itemIn.ware_id")
+                    ->orderby(DB::raw("ifnull(v_itemIn.total,0) - ifnull(v_itemOut.total,0)"),'desc')
+                    ->where('id',$id_barang)
+                    ->get();
 
         return $stok;
 
+    }
+
+    private function category($request)
+    {
+        if(!$request->ajax()){
+            abort('405');
+        }
+        $category = new Category;
+        return $category->get();
+    }
+
+    private function allBarang($request)
+    {
+        $barang = new Barang;
+        $hasil = $barang
+                        ->leftjoin('hargas','hargas.id','=','barangs.id_harga')
+                        ->select('barangs.*','hargas.harga as harga_beli')
+                        ->get();
+        return $hasil;
+    }
+
+    private function allPaymentType($request)
+    {
+        $kartu = new Kartu;
+        return $kartu->get();
     }
 }
