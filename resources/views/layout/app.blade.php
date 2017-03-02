@@ -50,6 +50,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{ asset('assets/layouts/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/bower_components/Autocomplete/dist/autocomplete.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/datatables/datatables.min.css') }}">
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
@@ -221,12 +222,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
         <script>
-            $('.select2').each(function() {
-                $(this).select2();
-                console.log('select2 generated')
-            });
+        @include('layout.mainJS')
         </script>
         @yield('script')
         @include('layout.jsVariable')

@@ -20,7 +20,8 @@ class KartuController extends Controller
      */
     public function index()
     {
-        $data = Kartu::paginate(15);
+        // $data = Kartu::paginate(15);
+        $data = Kartu::get();
         return view('master.kartu.index',compact('data'));
     }
 

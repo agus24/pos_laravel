@@ -21,7 +21,8 @@ class HargaController extends Controller
      */
     public function index()
     {
-        $data = Harga::paginate(15);
+        // $data = Harga::paginate(15);
+        $data = Harga::get();
         return view('master.harga.index',compact('data'));
     }
 

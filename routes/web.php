@@ -48,6 +48,8 @@ Route::group(['middleware' => 'access'],function(){
 	Route::resource('purchase', 'admin\inventory\PurchaseController',['as' => 'purchase']);
 	Route::resource('adjustment', 'admin\inventory\AdjustController',['as' => 'adjustment']);
 
+	Route::get('stock_card/search/{search}/order/{by}{tipe}', 'admin\inventory\StockCardController@search',['as' => "stock_card"]);
+
 	Route::get('transfer','admin\inventory\TransferController@index')->name('transfer');
 	Route::post('transfer','admin\inventory\TransferController@store')->name('transfer');
 	Route::get('transfer/list','admin\inventory\TransferController@listData')->name('transfer');

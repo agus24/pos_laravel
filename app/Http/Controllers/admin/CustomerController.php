@@ -20,7 +20,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $data = Customer::paginate(15);
+        // $data = Customer::paginate(15);
+        $data = Customer::get();
         return view('master.customer.index',compact('data'));
     }
 

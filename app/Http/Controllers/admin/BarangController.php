@@ -46,9 +46,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data = Barang::paginate(15);
-
-        // dd($data);
+        $data = Barang::joinAll()->get();
         return view('master.barang.index',compact('data'));
     }
 

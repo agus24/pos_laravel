@@ -66,7 +66,7 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="pagination-wrapper"> {!! $stok->render() !!} </div>
+            {{-- <div class="pagination-wrapper"> {!! $stok->render() !!} </div> --}}
         </div>
     </div>
 </div>

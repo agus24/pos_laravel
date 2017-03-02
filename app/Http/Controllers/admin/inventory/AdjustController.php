@@ -33,7 +33,8 @@ class AdjustController extends Controller
      */
     public function index()
     {
-        $data = Adjust::FindBarang()->paginate(15);
+        // $data = Adjust::FindBarang()->paginate(15);
+        $data = Adjust::FindBarang()->get();
         return view('inventory.adjustment.index',compact('data'));
     }
 

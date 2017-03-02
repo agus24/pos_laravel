@@ -54,7 +54,7 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="pagination-wrapper"> {!! $data->render() !!} </div>
+            {{-- <div class="pagination-wrapper"> {!! $data->render() !!} </div> --}}
         </div>
     </div>
 </div>

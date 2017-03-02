@@ -46,7 +46,7 @@ class TransferController extends Controller
                     })
                     ->select("barangs.*",DB::raw("ifnull(v_itemOut.total,0) as jumlah_keluar"),DB::raw("ifnull(v_itemIn.total,0) as jumlah_masuk"), DB::raw("ifnull(v_itemIn.total,0) - ifnull(v_itemOut.total,0) as stok"),"v_itemIn.ware_id")
                     ->orderby(DB::raw("ifnull(v_itemIn.total,0) - ifnull(v_itemOut.total,0)"),'desc')
-                    ->paginate(15);
+                    ->get();
 
         // dd($stok);
 

@@ -20,7 +20,8 @@ class StockCardController extends Controller
     public function index()
     {
         $stock = new StockCard;
-        $data = $stock->barang()->paginate(15);
+        // $data = $stock->barang()->paginate(15);
+        $data = $stock->barang()->get();
         return view('inventory.stock_card.index',compact('data'));
     }
 

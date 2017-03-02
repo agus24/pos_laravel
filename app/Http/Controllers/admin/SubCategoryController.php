@@ -21,7 +21,8 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $data = SubCategory::paginate(15);
+        // $data = SubCategory::paginate(15);
+        $data = SubCategory::get();
         return view('master.subcategory.index',compact('data'));
     }
 

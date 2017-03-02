@@ -53,7 +53,8 @@ class PurchaseController extends Controller
     public function index()
     {
         $purchase = new Purchase;
-        $data = $purchase->joinWarehouse()->paginate(15);
+        // $data = $purchase->joinWarehouse()->paginate(15);
+        $data = $purchase->joinWarehouse()->get();
         // return $data;
         // $data = $purchase->paginate(15);
         return view('inventory.purchase.index',compact('data'));
