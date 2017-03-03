@@ -14,14 +14,22 @@ class StockCard extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['tanggal','barang_id','qty','tipe','description'];
 
+    /**
+     * get Barang
+     * @return Collection
+     */
     public function barang()
     {
     	return $this->join('barangs','stock_cards.barang_id','=','barangs.id')
     				->select('stock_cards.*','barangs.nama as barang_name');
     }
 
+    /**
+     * Count Stock
+     * @return Eloquent
+     */
     public function stok()
     {
-    	
+        //
     }
 }

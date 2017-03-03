@@ -19,6 +19,13 @@ class Transfer extends Model
 			"ware_to"
     	];
 
+    /**
+     * Transfer Stock from warehouse to warehouse
+     * @param  int $ware_from
+     * @param  int $ware_to
+     * @param  int $id_barang
+     * @param  int $qty
+     */
     public function transferDo($ware_from, $ware_to, $id_barang, $qty)
     {
     	DB::table('stock_cards')->insert([
@@ -41,9 +48,12 @@ class Transfer extends Model
     		]);
     }
 
+    /**
+     * join to Barang and Warehouse
+     * @return Eloquent
+     */
     public function joinAll()
     {
-
     	return $this->join('barangs','transfers.barang_id','barangs.id')
     				->join('warehouses as a','a.id','transfers.ware_from')
     				->join('warehouses as b','b.id','transfers.ware_to')
