@@ -20,7 +20,12 @@ class Barang extends Model
 		'id_subcategory',
         'harga'
     ];
-    
+
+    /**
+     * Static Method join to harga, category, subcategory
+     * @param  $this $query Eloquent
+     * @return Eloquent
+     */
     public function scopejoinAll($query)
     {
     	return $query->leftjoin('hargas','barangs.id_harga','hargas.id')
@@ -29,6 +34,10 @@ class Barang extends Model
 		    		->select('barangs.*','categories.name as category_name','sub_categories.name as sub_category_name','hargas.harga');
     }
 
+    /**
+     * connect Relationship
+     * @return StockCard Eloquent
+     */
     public function stockCard(){
     	return $this->hasMany('App\model\StockCard','barang_id','id');
     }

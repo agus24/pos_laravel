@@ -1,6 +1,5 @@
 <?php
 
-
 // Auth::loginUsingId(2);
 
 /*
@@ -13,6 +12,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::get('/', function () {
     return redirect('login');
@@ -67,6 +68,8 @@ Route::get('mail',function(){
 });
 
 Route::get('ts',function(){
-	$data = Purchase::getNewNoPurchase(Auth::user()->ware_id);
+	Auth::loginUsingId(2);
+	$data = App\model\Purchase::getNewNoPurchase(Auth::user()->ware_id);
 	dd($data);
 });
+

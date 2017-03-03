@@ -26,13 +26,24 @@ class Adjust extends Model
 		"ware_id",
     ];
 
-    public function scopeFindBarang($query) 
+    /**
+     * Static method Cari Barang
+     * @param  $this $query
+     * @return Eloquent
+     */
+    public function scopeFindBarang($query)
     {
     	$query->join('barangs','adjusts.barang_id','barangs.id')
     			->join('warehouses','adjusts.ware_id','warehouses.id')
     			->select('adjusts.*','barangs.nama as nama_barang','warehouses.name as nama_warehouse');
     }
 
+    /**
+     * Static Method bikin nomor adjust baru
+     * @param  $this $query
+     * @param  int $ware_id warehouse id
+     * @return String          No Adjust
+     */
     public function scopegetNewNoAdjust($query,$ware_id)
     {
       $helper     = new Helper;
@@ -47,18 +58,30 @@ class Adjust extends Model
       return implode('/',$group);
     }
 
+    /**
+     * Insert to Stock Card
+     * @param  int $id  Id Barang
+     * @param  int $qty jumlah Barang
+     * @param  String $no  no Adjust
+     */
     public function insertStock($id,$qty,$no)
     {
-    	DB::table('stock_cards')->insert([
-    		"tanggal" 		=> Carbon::now(),
-			"barang_id" 	=> $id,
-			"qty" 			=> $qty,
-			"tipe" 			=> "In",
-			"ware_id" 		=> Auth::user()->ware_id,
-			"description" 	=> "Adjust No ".$no
-    	]);
+        DB::table('stock_cards')->insert([
+            "tanggal" 	     => Carbon::now(),
+    	    "barang_id"      => $id,
+    	    "qty" 			 => $qty,
+    	    "tipe"           => "In",
+    	    "ware_id" 		 => Auth::user()->ware_id,
+    	    "description" 	 => "Adjust No ".$no
+        ]);
     }
 
+    /**
+     * Delete stock_card
+     * @param  int $id  Barang Id
+     * @param  int $qty Jumlah Barang
+     * @param  String $no  No Adjustment
+     */
     public function deleteStock($id,$qty,$no)
     {
     	DB::table('stock_cards')->insert([
