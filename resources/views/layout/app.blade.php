@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
 Version: 4.7.1
 Author: KeenThemes
@@ -51,11 +51,20 @@ License: You must have a valid license purchased only from themeforest(the above
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/bower_components/jquery-ui/themes/ui-lightness/jquery-ui.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/bower_components/Autocomplete/dist/autocomplete.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/datatables/datatables.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/loading.css') }}">
+        {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-datatable/css/jquery.bdt.min.css') }}"> --}}
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
+
     <!-- END HEAD -->
 
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+        <div id="loading-page" style="top:0;width:100%;height:100%;position: fixed;z-index: 9999;background-color: #15191f;">
+            <div class="loader-img" id="loader-progress2">
+                <h3 class="load-text" style="margin-top: 19% !important;">Elypsum Development</h3>
+                <img src="{{ asset('assets/loading-gif.gif') }}" class="img-load">
+            </div>
+        </div>
         <div class="page-wrapper">
             <!-- BEGIN HEADER -->
             <div class="page-header navbar navbar-fixed-top">
@@ -157,7 +166,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="page-content">
                         @yield('content')
                     </div>
-                    
+
                     <!-- END CONTENT BODY -->
                 </div>
                 <!-- END CONTENT -->
@@ -168,8 +177,8 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
-<script src="../assets/global/plugins/excanvas.min.js"></script> 
-<script src="../assets/global/plugins/ie8.fix.min.js"></script> 
+<script src="../assets/global/plugins/excanvas.min.js"></script>
+<script src="../assets/global/plugins/ie8.fix.min.js"></script>
 <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="{{ asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
@@ -223,6 +232,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/global/plugins/datatables/datatables.min.js') }}" type="text/javascript"></script>
+        {{-- <script src="{{ asset('assets/global/plugins/bootstrap-datatable/js/jquery.bdt.js') }}" type="text/javascript"></script> --}}
         <!-- END THEME LAYOUT SCRIPTS -->
         <script>
         @include('layout.mainJS')

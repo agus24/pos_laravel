@@ -1,6 +1,10 @@
 $(window).load(function(){
     setSelect2();
     setTable();
+
+    setTimeout(function() {
+        $('#loading-page').fadeOut();
+    },2000);
 });
 function setSelect2(){
  $('.select2').each(function() {
